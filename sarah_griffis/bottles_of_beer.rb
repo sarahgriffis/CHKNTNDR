@@ -22,6 +22,7 @@
     puts "#{n} bottles of beer!"
     puts "You take one down and pass it around,"
     puts "#{n-1} bottles of beer on the wall!"
+    puts "\n"
   else
     puts "1 bottle of beer on the wall"
     puts "1 bottle of beer!"
