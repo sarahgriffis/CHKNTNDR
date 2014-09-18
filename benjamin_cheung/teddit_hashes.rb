@@ -21,24 +21,24 @@ puts "Welcome to Teddit! a text based news aggregator. Get today's news tomorrow
 
 # Create an empty array named `posts` that we will use to store all of the
 # stories, their categories and their upvotes in, as hashes.
-posts = {}
+posts = []
 
 input = ''
 until input == 'exit'
-
+  post = {}
   puts 'Please enter a News story:'
 
   # Change the below line so that instead of storing the input in a variable
   # called `story`, we instead store it in a hash, where the key is :story.
   # (hint: you maaaay need to define the hash first above this line)
-  posts[:story] = get_input
+  post[:story] = get_input
 
 
   puts 'Please give it a category:'
   # In the same vein, let's get the category from the user, and instead of
   # storing the category in a variable called `category` (as below), let's
   # store it in the same hash, with a key of :category.
-  posts[:category] = get_input
+  post[:category] = get_input
 
 
   # Since we now know the story and category, let's calculate the upvotes and
@@ -46,13 +46,14 @@ until input == 'exit'
   # note, you may need to change the `story` and `category` variables below on
   # the below line if you changed where you store these values in the sections
   # above.
-  posts[:upvotes] = calculate_upvotes(posts[:story], posts[:category])
+  post[:upvotes] = calculate_upvotes(posts[:story], posts[:category])
 
   # Lastly, let's add our new hash to the posts array that you created above
   # this loop.
 
   # Finally, we'll display the story to the end user before asking them if they
   # would like to add another
+  posts << post
   puts "#{posts[:category]}"
   puts "New story added! #{posts[:story]}, Category: #{posts[:category].capitalize}, Current Upvotes: #{posts[:upvotes]}"
 
