@@ -85,19 +85,20 @@ end
 # the title, and the start of the body.
 html = '<html><head><title>BEWD RadioLab Blog</title></head><body>'
 
+
 0.upto(2) do |n|
   post = blog_posts[n][:title]
   html << title_to_html(post)
-end
 
-0.upto(2) do |n|
-  body = blog_posts[n][:body]
-  html << body_to_html(body)
-end
-
-0.upto(2) do |n|
   author = blog_posts[n][:author].values
   html << author_to_html(author[0], author[1], author[2])
+
+  body = blog_posts[n][:body]
+  html << body_to_html(body)
+
+  tags = blog_posts[n][:tags]
+  html << tags_to_html(tags)
+  
 end
 
 # Create a loop that iterates through each of the blog posts. Since
