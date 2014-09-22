@@ -30,11 +30,63 @@
 #
 ###############################################################################
 
-class SecretNumberGame
+# class SecretNumberGame
   
-  def initialize
-    @secret_number = 22
-    @guesses = 7
+#   def initialize
+#     @secret_number = 22
+#     @guesses = 7
+#   end
+
+#   def play
+#     greeting
+#     @guesses.times do |n|
+#       guesses_left = n-1 
+#       puts "\nYou have #{guesses_left} guesses left!"
+#       puts "Please make your first guess:"
+#       players_guess = $stdin.gets.chomp.to_i
+#       return if correct?(players_guess)
+#     end
+#     puts "You lost! :-( The number to guess was #{@secret_number}."
+#   end
+    
+#   def greet(player_name)
+#     puts "Welcome to the Secret Number Game, #{first_name}!" 
+#   end
+
+#   def created_by
+#     puts "Created by Jennifer Spriggs."  
+#   end
+
+
+#   def correct?(players_guess)
+#     if ___
+#       puts "You win! The number was #{@secret_number}."
+#       return true
+#     elsif ___
+#       puts "Make your next guess higher than #{players_guess}"
+#     elsif ___
+#       puts "Make your next guess lower than #{players_guess}"
+#     end
+#     false
+#   end 
+
+#   def greeting
+#     puts created_by
+#     puts "\nWhat is your name?"
+#     player_name = gets.strip
+#     puts greet(player_name)
+#   end
+
+# end
+
+class Secret_Number_Game
+
+  def get_input
+    gets.strip
+  end
+
+  def greet(player_name)
+    puts "Welcome to the Secret Number Game, #{first_name}!" 
   end
 
   def play
@@ -48,36 +100,5 @@ class SecretNumberGame
     end
     puts "You lost! :-( The number to guess was #{@secret_number}."
   end
-    
-  def greet(player_name)
-    puts "Welcome to the Secret Number Game, #{first_name}!" 
-  end
-
-  def created_by
-    puts "Created by Jennifer Spriggs."  
-  end
 
 
-  def correct?(players_guess)
-    if ___
-      puts "You win! The number was #{@secret_number}."
-      return true
-    elsif ___
-      puts "Make your next guess higher than #{players_guess}"
-    elsif ___
-      puts "Make your next guess lower than #{players_guess}"
-    end
-    false
-  end
-
-  #Do not change anything past this line
-  private 
-
-  def greeting
-    puts created_by
-    puts "\nWhat is your name?"
-    player_name = gets.strip
-    puts greet(player_name)
-  end
-
-end
