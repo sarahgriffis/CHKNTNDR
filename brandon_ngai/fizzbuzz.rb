@@ -20,13 +20,13 @@
 
 1.upto(100) do |n|
 
-  if n % 3 == 0
-    puts "#{n}: Fizz"
+  if n % 3 == 0 && n % 5 == 0
+    puts "#{n}: FizzBuzz"
   elsif n % 5 == 0
     puts "#{n}: Buzz"
-  elsif n % 3 == 0 && n % 5 == 0
-    puts "#{n}: FizzBuzz"
-  else
+  elsif n % 3 == 0
+    puts "#{n}: Fizz"
+  else 
     puts "#{n}"
   end
 
