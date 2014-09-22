@@ -67,7 +67,7 @@ while tries < times_to_loop
 
   puts "Sorry that is not a valid guess" if guess > 10 || guess < 1
 
-  puts "Sorry, game over" if tries == 3
+  puts "Sorry, game over, the secret number was #{secret_number}" if tries == times_to_loop
 
   tries += 1
 

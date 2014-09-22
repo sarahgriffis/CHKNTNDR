@@ -86,12 +86,15 @@ html = '<html><head><title>BEWD RadioLab Blog</title></head><body>'
 # `blog_posts` is an array, you can start at 0 and loop to the size of the
 # elements in the array. Make sure that you have a way to access the current
 # iteration number when looping over the array.
+0.upto(blog_posts.size - 1) do |n|
+ 
 
 
   # Once inside of the loop, create a new variable called `post` (singular)
   # that is equal to the value of the `blog_posts` array at the current
   # iteration number as the index. Don't forget, indexes start at 0, so you may
   # need to offset the current iteration number first.
+post = blog_posts[n]
 
 
   # Now that we have access to a single element of `blog_posts` (which you
@@ -121,6 +124,7 @@ html = '<html><head><title>BEWD RadioLab Blog</title></head><body>'
   # somehow iterate over it, but instead we leave that job up to the method
   # defined above that converts tags them to HTML.
 
+end
 
 # Be sure to end your loop here.
 
