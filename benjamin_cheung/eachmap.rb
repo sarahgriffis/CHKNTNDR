@@ -74,9 +74,8 @@ tags = blog_posts.map do |blog|
   blog[:tags]
 end
 
-tags = tags.flatten
-tags = tags.uniq
-puts "#{tags}"
+tags = tags.flatten.uniq
+
 
 
 # There shouldn't be any need to edit anything below this line
