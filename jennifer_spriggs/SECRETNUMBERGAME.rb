@@ -30,75 +30,56 @@
 #
 ###############################################################################
 
-# class SecretNumberGame
-  
-#   def initialize
-#     @secret_number = 22
-#     @guesses = 7
-#   end
+def initialize
+  @secret
+puts "WELCOME TO THE ~*SuPeR CoOl*~ SUPER SECRET NUMBER GAME! **Created by Jenn Spriggs**"
 
-#   def play
-#     greeting
-#     @guesses.times do |n|
-#       guesses_left = n-1 
-#       puts "\nYou have #{guesses_left} guesses left!"
-#       puts "Please make your first guess:"
-#       players_guess = $stdin.gets.chomp.to_i
-#       return if correct?(players_guess)
-#     end
-#     puts "You lost! :-( The number to guess was #{@secret_number}."
-#   end
-    
-#   def greet(player_name)
-#     puts "Welcome to the Secret Number Game, #{first_name}!" 
-#   end
+playagain = "y"
 
-#   def created_by
-#     puts "Created by Jennifer Spriggs."  
-#   end
+while playagain == "y"
+
+  win = false
+
+  randNum = rand(10) + 1
 
 
-#   def correct?(players_guess)
-#     if ___
-#       puts "You win! The number was #{@secret_number}."
-#       return true
-#     elsif ___
-#       puts "Make your next guess higher than #{players_guess}"
-#     elsif ___
-#       puts "Make your next guess lower than #{players_guess}"
-#     end
-#     false
-#   end 
+  puts "(^_^) PLEASE GUESS A NUMBER BETWEEN 1 and 10! You have three guesses!"
 
-#   def greeting
-#     puts created_by
-#     puts "\nWhat is your name?"
-#     player_name = gets.strip
-#     puts greet(player_name)
-#   end
+# def play
+  #   greeting
+  #   @guesses.times do |n|
+  #     guesses_left = n-1 
+  #     puts "\nYou have #{guesses_left} guesses left!"
+  #     puts "Please make your first guess:"
+  #     players_guess = $stdin.gets.chomp.to_i
+  #     return if correct?(players_guess)
+  #   end
+  #   puts "You lost! :-( The number to guess was #{@secret_number}."
+  # end
 
-# end
+  while !win
+      guessedNumber = gets.to_i
 
-class Secret_Number_Game
+    times_to_loop = 3
+    i = 0
 
-  def get_input
-    gets.strip
-  end
-
-  def greet(player_name)
-    puts "Welcome to the Secret Number Game, #{first_name}!" 
-  end
-
-  def play
-    greeting
-    @guesses.times do |n|
-      guesses_left = n-1 
-      puts "\nYou have #{guesses_left} guesses left!"
-      puts "Please make your first guess:"
-      players_guess = $stdin.gets.chomp.to_i
-      return if correct?(players_guess)
+      while i < times_to_loop
+        if guessedNumber > randNum then
+          puts "(╯°□°)╯︵ ┻━┻ TOO HIGH, TRY AGAIN! You have #{i} number of guesses left!" 
+        elsif guessedNumber < randNum then
+          puts "‎(ﾉಥ益ಥ）ﾉ﻿ ┻━┻ TOO LOW, TRY AGAIN! You have #{i} number of guesses left!"
+        else
+          puts "(づ｡◕‿‿◕｡)づ YOU WIN!!!"
+          win = true
+        i += 1
+        end
+      end
     end
-    puts "You lost! :-( The number to guess was #{@secret_number}."
-  end
+  # end
 
+  puts "The secret number was #{randNum} (◡ ‿ ◡ ✿) WANNA DO IT AGAIN?! (y/n)"
+  playagain = gets.chomp!
+end
+
+puts "Thanks for playing! [^._.^]ﾉ彡 "
 
