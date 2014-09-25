@@ -65,13 +65,6 @@ parsed_response = JSON.parse(response)
 posts = parsed_response['data']['children'].map do |post|
   {title: post['data']['title'], category: post['data']['subreddit'], upvotes: calculate_upvotes(post['data']['title'],post['data']['subreddit'])}
 end
-binding.pry
-
-
-
-
-
-
 
 #
 # To do this, begin iterating over the posts in `parsed_response` (remember you
@@ -105,11 +98,7 @@ binding.pry
   # the keys equal to the variables that you defined above (`title`, `category`
   # and `upvotes`), so those will need to be defined in order for this line to
   # work
-  post = { title: title, category: category, upvotes: upvotes }
-
-  # Lastly, this line will add the new hash into the empty `posts` array that
-  # you defined above
-  posts << post
+  
 
 # Be sure to end your loop here.
 
