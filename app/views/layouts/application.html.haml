@@ -27,13 +27,15 @@
           - else
             %li
               %a= link_to 'Sign Up with LinkedIn', user_omniauth_authorize_path(:linkedin)
+            %li
+              %a= link_to 'Login', new_user_registration_path
+            <!--'#myModal', "data-toggle" => "modal" -->
+
 
           %li
             %a= link_to 'Contact', '#'
           %li
             %a= link_to 'About', '#'
-          %li
-            %a= link_to 'Login', '#myModal', "data-toggle" => "modal"
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

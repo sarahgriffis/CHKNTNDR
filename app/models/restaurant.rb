@@ -15,7 +15,7 @@ class Restaurant
     @formatted_phone = formatted_phone
     @price_tier = price_tier
     @num_ratings = num_ratings
-    @photo_url = photo_url_prefix + '300x300' + photo_url_suffix
+    @photo_url = photo_url_prefix == 'no picture' ? 'restaurant-clip-art.jpg' : photo_url_prefix + '300x300' + photo_url_suffix
   end
 
   def self.all

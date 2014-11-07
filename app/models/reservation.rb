@@ -12,11 +12,11 @@ class Reservation < ActiveRecord::Base
     #restaurant name, address, phone number, photo, price, cuisine, ratings
     foursquare_data.groups[0].items.each do |place|
       Restaurant.new(place[:venue][:name],
-                     place[:venue][:location][:formattedAddress],
-                     place[:venue][:contact][:formattedPhone],
+                     place[:venue][:location][:formattedAddress].nil? ? 'Address Unknown' : place[:venue][:location][:formattedAddress],
+                     place[:venue][:contact][:formattedPhone].nil? ? 'Phone Number Unknown' : place[:venue][:contact][:formattedPhone],
                      place[:venue][:price].nil? ? '?' : place[:venue][:price][:tier],
-                     place[:venue][:rating],
-                     place[:venue][:ratingSignals],
+                     place[:venue][:rating].nil? ? '?' : place[:venue][:rating],
+                     place[:venue][:ratingSignals].nil? ? '?' :  place[:venue][:ratingSignals],
                      place[:venue][:featuredPhotos].nil? ? 'no picture' : place[:venue][:featuredPhotos][:items][0][:prefix] ,
                      place[:venue][:featuredPhotos].nil? ? 'no picture' : place[:venue][:featuredPhotos][:items][0][:suffix])
     end
