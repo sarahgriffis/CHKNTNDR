@@ -7,7 +7,7 @@ class Reservation < ActiveRecord::Base
   def find_by_foursquare
     version = '20130815'
 
-    client = Foursquare2::Client.new(:client_id => FOURSQUARE_ID, :client_secret => FOURSQUARE_SECRET, :api_version => version)
+    client = Foursquare2::Client.new(:client_id => ENV['FOURSQUARE_ID'], :client_secret => ENV['FOURSQUARE_SECRET'], :api_version => version)
     foursquare_data = client.explore_venues(:ll => composed_location, :query => self.cuisine, :venuePhotos => true)
     #restaurant name, address, phone number, photo, price, cuisine, ratings
     foursquare_data.groups[0].items.each do |place|
