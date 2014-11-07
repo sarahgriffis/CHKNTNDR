@@ -68,6 +68,8 @@ GEM
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
     flat-ui-rails (0.0.2)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     foursquare2 (2.0.1)
       faraday (~> 0.8)
       faraday_middleware (>= 0.8)
@@ -206,6 +208,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   flat-ui-rails
+  font-awesome-rails
   foursquare2 (~> 2.0.1)
   geocoder
   haml

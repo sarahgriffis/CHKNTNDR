@@ -52,6 +52,7 @@ gem 'json'
 gem 'foursquare2', '~> 2.0.1'
 gem 'bootstrap-datepicker-rails'
 gem 'haml'
+gem 'font-awesome-rails'
 
 
 group :production do
