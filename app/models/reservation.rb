@@ -6,11 +6,11 @@ class Reservation < ActiveRecord::Base
 
   def find_by_foursquare
     version = '20130815'
-
+    return unless composed_location
     client = Foursquare2::Client.new(:client_id => ENV['FOURSQUARE_ID'], :client_secret => ENV['FOURSQUARE_SECRET'], :api_version => version)
     foursquare_data = client.explore_venues(:ll => composed_location, :query => self.cuisine, :venuePhotos => true)
     #restaurant name, address, phone number, photo, price, cuisine, ratings
-    foursquare_data.groups[0].items.each do |place|
+    foursquare_data.groups[0].items.map do |place|
       Restaurant.new(place[:venue][:name],
                      place[:venue][:location][:formattedAddress].nil? ? 'Address Unknown' : place[:venue][:location][:formattedAddress],
                      place[:venue][:contact][:formattedPhone].nil? ? 'Phone Number Unknown' : place[:venue][:contact][:formattedPhone],
@@ -21,13 +21,17 @@ class Reservation < ActiveRecord::Base
                      place[:venue][:featuredPhotos].nil? ? 'no picture' : place[:venue][:featuredPhotos][:items][0][:suffix])
     end
 
-    Restaurant.all
 
   end
 
   def composed_location
-    lat_lon = Geocoder.coordinates(self.city)
-    lat_lon[0].to_s + ',' + lat_lon[1].to_s
+    if self.city.present?
+      lat_lon = Geocoder.coordinates(self.city)
+      lat_lon[0].to_s + ',' + lat_lon[1].to_s
+    else
+      flash[:notice] = "Sorry, this city is not valid."
+    end
+
   end
 
 

@@ -20,7 +20,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.save
       redirect_to edit_reservation_path(@reservation.id)
-      #find_restaurants_path
+      #redirect_to find_restaurants_path(@reservation.id)
     else
       render :new
     end
@@ -28,13 +28,17 @@ class ReservationsController < ApplicationController
   end
 
   def find_restaurants
-    #@restaurants = Reservation.find_by_foursquare
-    binding.pry
+    @reservation = Reservation.find_by(id: params[:id])
+    @restaurants = @reservation.find_by_foursquare
   end
 
   def edit
     @reservation = Reservation.find_by(id: params[:id])
     @restaurants = @reservation.find_by_foursquare
+  end
+
+  def update
+    binding.pry
   end
 
 private
