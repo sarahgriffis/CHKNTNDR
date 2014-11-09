@@ -28,8 +28,6 @@ class Reservation < ActiveRecord::Base
     if self.city.present?
       lat_lon = Geocoder.coordinates(self.city)
       lat_lon[0].to_s + ',' + lat_lon[1].to_s
-    else
-      flash[:notice] = "Sorry, this city is not valid."
     end
 
   end

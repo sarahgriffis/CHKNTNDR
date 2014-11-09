@@ -27,6 +27,7 @@ class ReservationsController < ApplicationController
 
   end
 
+  #not using this method
   def find_restaurants
     @reservation = Reservation.find_by(id: params[:id])
     @restaurants = @reservation.find_by_foursquare
@@ -35,6 +36,7 @@ class ReservationsController < ApplicationController
   def edit
     @reservation = Reservation.find_by(id: params[:id])
     @restaurants = @reservation.find_by_foursquare
+    flash[:notice] = 'Could not find any restaurants' unless @restaurants
   end
 
   def update
