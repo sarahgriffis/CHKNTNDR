@@ -19,7 +19,7 @@
     .navbar.navbar-default.bs-docs-nav{:role => 'banner'}
       .container-fluid
         .navbar-header
-          %a.navbar-brand= link_to 'CHKTNDR', root_path
+          .navbar-brand= link_to 'CHKTNDR', root_path
           %button.navbar-toggle{:type => "button", 'data-toggle' => "collapse",  'data-target' => ".bs-navbar-collapse"}
             %span.sr-only Toggle only
             %span.icon-bar
@@ -30,15 +30,15 @@
             - if current_user
               %li You are currently signed in as #{current_user.full_name}.
               %li
-                %a= link_to 'Sign Out', destroy_user_session_path, method: :delete
+                = link_to 'Sign Out', destroy_user_session_path, method: :delete
             - else
               %li
-                %a= link_to 'Sign Up', new_user_registration_path
+                = link_to 'Sign Up', new_user_registration_path
               %li
-                %a= link_to 'Login', new_user_session_path
+                = link_to 'Login', new_user_session_path
             %li
-              %a= link_to 'Contact', '#'
+              = link_to 'Contact', '#'
             %li
-              %a= link_to 'About', '#'
+              = link_to 'About', '#'
 
     = yield
