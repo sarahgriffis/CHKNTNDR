@@ -1,46 +1,51 @@
 class ReservationsController < ApplicationController
+  def index
+  end
+
   def new
     @reservation = Reservation.new
   end
 
-  def index
+
+
+  def show
+    @reservation = Reservation.find(params[:id])
+    #@restaurants = @reservation.restaurants
   end
 
-
-
- # def show
- #   @restaurants = Reservation.find_by_foursquare
- # end
-
   def create
-    @reservation = Reservation.new(reservation_params)
-    @reservation.user = current_user
-    @reservation.save
-
+    @reservation = Reservation.new(reservation_params, user: current_user)
 
     if @reservation.save
+      flash[:notice] = nil #TODO you shouldn't have to do this
       redirect_to edit_reservation_path(@reservation.id)
       #redirect_to find_restaurants_path(@reservation.id)
     else
+      flash[:notice] = 'Could not find any restaurants'
       render :new
     end
 
   end
 
   #not using this method
-  def find_restaurants
-    @reservation = Reservation.find_by(id: params[:id])
-    @restaurants = @reservation.find_by_foursquare
-  end
+  #def find_restaurants
+  #  @reservation = Reservation.find_by(id: params[:id])
+  #  @restaurants = @reservation.find_by_foursquare
+  #end
 
   def edit
-    @reservation = Reservation.find_by(id: params[:id])
+    @reservation = Reservation.find(params[:id])
     @restaurants = @reservation.find_by_foursquare
-    flash[:notice] = 'Could not find any restaurants' unless @restaurants
   end
 
   def update
-    binding.pry
+    @reservation = Reservation.find(params[:id])
+
+    if @reservation.update(reservation_params)
+      redirect_to @reservation
+    else
+      render :edit
+    end
   end
 
 private

@@ -32,4 +32,18 @@
   border: none;
 }
 
+.checkbox-custom-class{
+  display: inline;
+  label{
+    display: inline;
+    .check_boxes{
+      visibility: hidden;
+    }
+  }
+
+}
+
+.restaurant-label.selected{
+   border-style: solid;
+  }
 

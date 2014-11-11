@@ -1,13 +1,36 @@
-%h1 Choose Your Restaurants
-- if @restaurants
-  -@restaurants.in_groups_of(4, false).each do |group|
-    - group.each do |r|
-      .col-md-3.col-sm-6
-        %h2= r.name
-        %p= "Price tier: " + r.price_tier.to_s + " of 5."
-        %p= "Rating: " + r.rating.to_s + " from " + r.num_ratings.to_s + " rating".pluralize
-        .thumbnail
-          = image_tag r.photo_url, :alt => 'restaurant-clip-art.jpg', :width => 300, :height => 300
-        %p= r.formatted_address[0]
-        %p= r.formatted_phone
-        %br
+= stylesheet_link_tag "reservations_edit.css.scss"
+%h2 What restaurants are you interested in?
+%h3 We'll use this information to help pair you with other travelling diners with similar tastes.
+%h3 (we suggest choosing 3-5)
+= simple_form_for @reservation, :defaults => { :wrapper_html => {:class => 'form-group'}} do |f|
+  = f.association :restaurants, as: :check_boxes, :label => false,item_wrapper_class: 'checkbox-custom-class col-md-4 col-sm-6 ', class: 'checkbox-inline', :label_method => lambda { |r| "<div class='restaurant-label'> |
+                                                                                                   #{r.name.capitalize} <br> |
+                                                                                          Price tier: #{r.price} of 5.  <br> |
+                                                Rating:  #{r.rating} from #{r.number_of_ratings} #{'rating'.pluralize}. <br> |
+                                                                                             <img src=#{r.photo_url} >  <br> |
+                                                                                               #{r.formatted_address} <br> |
+                                                                                               #{r.formatted_phone} </div>".html_safe } |
+  %br
+  %br
+  %p.col-md-12.col-sm-12
+  .row
+    = f.button :submit, :class => "btn primary row col-md-4 col-sm-4 col-md-offset-4"
+
+
+//= binding.pry
+// //  = r.input :name
+// = f.association :restaurants, as: :check_boxes
+//- @restaurants.in_groups_of(4, false).each do |group|
+//  - group.each do |r|
+//    .col-md-3.col-sm-6
+//      %h2= r.name
+//      %p= "Price tier: " + r.price.to_s + " of 5."
+//      %p= "Rating: " + r.rating.to_s + " from " + r.number_of_ratings.to_s + " rating".pluralize
+//      .thumbnail
+//        = image_tag r.photo_url, :alt => 'restaurant-clip-art.jpg', :width => 300, :height => 300
+//      %p= r.formatted_address[0]
+//      %p= r.formatted_phone
+//      %br
+// , :input_html => { :class => 'form-control' } 
+//%link{:type => "text/scss", :rel => "stylesheet", :href => "/app/assets/stylesheets/reservations_edit.css.scss"}
+

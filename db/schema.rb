@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109213305) do
+ActiveRecord::Schema.define(version: 20141110013551) do
 
   create_table "reservations", force: true do |t|
     t.string   "fav_restaurant1"
@@ -26,6 +26,26 @@ ActiveRecord::Schema.define(version: 20141109213305) do
     t.string   "city"
     t.integer  "user_id"
     t.date     "preferred_date_end"
+    t.float    "latitude"
+    t.float    "longitude"
+  end
+
+  create_table "reservations_restaurants", force: true do |t|
+    t.integer "reservation_id"
+    t.integer "restaurant_id"
+  end
+
+  create_table "restaurants", force: true do |t|
+    t.string   "name"
+    t.string   "formatted_address"
+    t.string   "formatted_phone"
+    t.string   "price_tier"
+    t.string   "rating",            default: "0"
+    t.string   "number_of_ratings"
+    t.string   "photo_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "foursquare_id"
   end
 
   create_table "users", force: true do |t|

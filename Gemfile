@@ -38,11 +38,9 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'dotenv-rails', groups: [:development, :test]
-gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'omniauth-linkedin-oauth2'
 gem 'devise'
-gem 'flat-ui-rails'
 gem 'simple_form', '~> 3.1.0rc1'
 
 gem 'geocoder'

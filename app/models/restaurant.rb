@@ -1,28 +1,48 @@
-class Restaurant
+class Restaurant < ActiveRecord::Base
+  has_and_belongs_to_many :reservations
 
-
-  attr_reader :name, :formatted_address, :formatted_phone, :price_tier, :rating, :num_ratings, :photo_url
-  #:distance_miles
-
-  def initialize(name, formatted_address, formatted_phone, price_tier, rating, num_ratings, photo_url_prefix, photo_url_suffix)
-    @@restaurants ||= []
-    @@restaurants << self
-    @name = name
-    @formatted_address = formatted_address
-    #@distance_miles = distance*0.000621371
-    @rating = rating
-    @rating ||= 0
-    @formatted_phone = formatted_phone
-    @price_tier = price_tier
-    @num_ratings = num_ratings
-    @photo_url = photo_url_prefix == 'no picture' ? 'restaurant-clip-art.jpg' : photo_url_prefix + '300x300' + photo_url_suffix
+  def self.from_foursquare(response)
+    response.groups.first['items'].map do |place|
+      venue = place[:venue]
+      restaurant = find_or_create_by(foursquare_id: venue[:id]) do |r|
+        r.name = venue[:name]
+        r.formatted_address = address_from_foursquare(venue[:location][:formattedAddress])
+        r.formatted_phone = place[:venue][:contact][:formattedPhone]
+        r.price_tier = price_from_foursquare(place[:venue][:price])
+        r.rating = place[:venue][:rating]
+        r.number_of_ratings = place[:venue][:ratingSignals]
+        r.photo_url = photo_from_foursquare(place[:venue][:featuredPhotos])
+      end
+      restaurant.save
+      restaurant
+    end
   end
 
-  def self.all
-    @@restaurants
+  #TODO: These methods should probably be broken out to a FoursquareResponse class
+  def self.photo_from_foursquare(photos)
+    photo = photos[:items].first
+    "#{photo[:prefix]}300x300#{photo[:suffix]}"
   end
 
+  def self.address_from_foursquare(address)
+    address.join(', ')
+  end
 
+  def self.price_from_foursquare(price)
+    price.try(:tier)
+  end
+
+  #TODO: This is view logic, move to helper, presenter or decorator
+  def price
+    price_tier ? price_tier : 'Unknown'
+  end
 end
 
-
+#      Restaurant.new(place[:venue][:name],
+#                     place[:venue][:location][:formattedAddress].nil? ? 'Address Unknown' : place[:venue][:location][:formattedAddress],
+#                     place[:venue][:contact][:formattedPhone].nil? ? 'Phone Number Unknown' : place[:venue][:contact][:formattedPhone],
+#                     place[:venue][:price].nil? ? '?' : place[:venue][:price][:tier],
+#                     place[:venue][:rating].nil? ? '?' : place[:venue][:rating],
+#                     place[:venue][:ratingSignals].nil? ? '?' :  place[:venue][:ratingSignals],
+#                     place[:venue][:featuredPhotos].nil? ? 'no picture' : place[:venue][:featuredPhotos][:items][0][:prefix] ,
+#                     place[:venue][:featuredPhotos].nil? ? 'no picture' : place[:venue][:featuredPhotos][:items][0][:suffix])
