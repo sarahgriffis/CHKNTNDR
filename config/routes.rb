@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   #get 'reservations/index'
   #get 'reservations/show'
 
-  resources :reservations, :except => 'show'
+  resources :reservations
 
   devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks}
   get 'contact/show', as: :contact
