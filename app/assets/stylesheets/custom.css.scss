@@ -50,3 +50,62 @@
 .navbar{
   margin-bottom: 0px;
 }
+
+.nav{
+  li{
+    padding-top: 15px;
+    a{
+      display: inline;
+    }
+  }
+}
+
+.primary{
+  color: navy;
+}
+
+
+.text-primary {
+  color: #3c636b;
+}
+
+a.text-primary:hover {
+  color: #9db1b5;
+}
+
+a {
+  color: #3c636b;
+}
+
+a:hover,
+a:focus {
+  color: #9db1b5;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #3c636b;
+}
+
+.navbar-default {
+  background-color: #E7B54C;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color:  #9db1b5;
+}
+
+.btn-primary {
+  .a:hover{
+    color: 000;
+  }
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #9db1b5;
+  background-color: transparent;
+  }
+
+
