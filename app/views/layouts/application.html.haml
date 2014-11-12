@@ -8,14 +8,6 @@
     = csrf_meta_tags
 
   %body
-    - if notice
-      %p.alert
-        = notice
-
-    - if alert
-      %p.alert
-        = alert
-
     .navbar.navbar-default.bs-docs-nav{:role => 'banner'}
       .container-fluid
         .navbar-header
@@ -40,5 +32,13 @@
               = link_to 'Contact', '#'
             %li
               = link_to 'About', '#'
+    - if notice
+      %p.alert
+        = notice
+
+    - if alert
+      %p.alert
+        = alert
+
 
     = yield

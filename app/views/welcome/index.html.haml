@@ -13,10 +13,8 @@
     - if current_user
     - else
       .centered
-        %button.btn.btn-medium
-          %a= link_to 'Sign up via email', new_user_registration_path
-        %button.btn.btn-medium
-          %a= link_to 'Sign up via LinkedIn', user_omniauth_authorize_path(:linkedin)
+        %button.btn.btn-large
+          %a= link_to 'Sign up', new_user_registration_path
 
 .learn-more
   .container
