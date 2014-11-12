@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
   def after_update_path_for(devise)
     new_reservation_path
   end
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :job_title, :industry, :home_city) }
+  end
 end
