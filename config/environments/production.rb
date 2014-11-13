@@ -33,6 +33,11 @@ Rails.application.configure do
   config.assets.digest = true
 
   # `config.assets.precompile` has moved to config/initializers/assets.rb
+   config.action_mailer.delivery_method = :sendmail
+   config.action_mailer.raise_delivery_errors = true
+   config.action_mailer.default_url_options = { host: 'CHKNTNDR.com' }
+
+
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
