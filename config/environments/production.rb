@@ -33,10 +33,19 @@ Rails.application.configure do
   config.assets.digest = true
 
   # `config.assets.precompile` has moved to config/initializers/assets.rb
-   config.action_mailer.delivery_method = :sendmail
+  # config.action_mailer.delivery_method = :sendmail
    config.action_mailer.raise_delivery_errors = true
-   config.action_mailer.default_url_options = { host: 'CHKNTNDR.com' }
+   config.action_mailer.default_url_options = { host: 'aqueous-anchorage-2260.herokuapp.com' }
+   config.action_mailer.smtp_settings = {
+    :port =>           '587',
+    :address =>        'smtp.mandrillapp.com',
+    :user_name =>      ENV['MANDRILL_USERNAME'],
+    :password =>       ENV['MANDRILL_APIKEY'],
+    :domain =>         'heroku.com',
+    :authentication => :plain
+  }
 
+  config.action_mailer.delivery_method = :smtp
 
 
   # Specifies the header that your server uses for sending files.
