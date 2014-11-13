@@ -2,6 +2,7 @@ class Reservation < ActiveRecord::Base
   before_save :set_location
 
   #before_save :find_by_foursquare
+
   belongs_to :user
   has_and_belongs_to_many :restaurants
   #method here

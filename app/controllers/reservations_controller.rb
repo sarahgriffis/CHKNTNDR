@@ -53,7 +53,7 @@ private
   def reservation_params
     params.require(:reservation).permit(:city, :fav_restaurant1, :fav_restaurant2, :fav_restaurant3,
                                        :cuisine, :prefer_drinks, :preferred_reservation_time,
-                                       :preferred_date, :user_id)
+                                       :preferred_date, :user_id, {:restaurant_ids => []})
   end
 
 
