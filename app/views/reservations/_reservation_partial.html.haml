@@ -3,4 +3,4 @@
   %p= "Dates : #{r.preferred_date_start} to #{r.preferred_date_end}"
   %p= "Drinks : #{r.prefer_drinks}"
   %p= "Dining Time : #{r.preferred_reservation_time.strftime("%I:%M %p")}"
-  = link_to 'Delete', r, method: :delete, data: {confirm: "You sure?"}
+  = link_to 'Delete', r, method: :delete, data: {confirm: "Are you sure?"}
