@@ -7,13 +7,14 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
   %body
     .navbar.navbar-default{:role => 'navigation'}
       .container-fluid
         .navbar-header
           .navbar-brand= link_to 'CHKNTNDR', root_path
-          %button.navbar-toggle.dropdown-toggle.glyphicon.glyphicon-align-justify{'type' => "button", 'data-toggle' => "collapse",  'data-target' => "#navigationbar"}
+          %button.navbar-toggle.dropdown-toggle.glyphicon.glyphicon-align-justify.fui-linkedin{'type' => "button", 'data-toggle' => "collapse",  'data-target' => "#navigationbar"}
             %span.sr-only Toggle only
             %span.icon-bar
             %span.icon-bar
@@ -38,6 +39,8 @@
                 = link_to 'Sign Up', new_user_registration_path
               %li
                 = link_to 'Login', new_user_session_path
+            %li
+              %span.fui-list
             %li
               = link_to 'Contact', '#'
             %li
