@@ -11,7 +11,7 @@ class Restaurant < ActiveRecord::Base
         r.price_tier = price_from_foursquare(place[:venue][:price])
         r.rating = place[:venue][:rating]
         r.number_of_ratings = place[:venue][:ratingSignals]
-        r.photo_url = photo_from_foursquare(place[:venue][:featuredPhotos])
+        r.photo_url = place[:venue][:featuredPhotos].nil? ? 'assets/images/restaurant-clip-art.jpg' : photo_from_foursquare(place[:venue][:featuredPhotos])
       end
       restaurant.save
       restaurant

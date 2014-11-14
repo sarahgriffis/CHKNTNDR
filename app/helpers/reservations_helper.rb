@@ -6,10 +6,11 @@ module ReservationsHelper
      <br>
      Rating:  #{r.rating} from #{r.number_of_ratings} #{'rating'.pluralize}.
      <br>
-     <img src=#{r.photo_url} >
+     <img src=#{r.photo_url}>
      <br>
      #{r.formatted_address}
      <br>
-     #{r.formatted_phone} </div>"
+     #{r.formatted_phone}
+     </div>"
   end
 end

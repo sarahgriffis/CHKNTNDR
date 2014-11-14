@@ -1,5 +1,4 @@
-%h1 Your Reservation
-%p= "City : #{@reservation.city}"
-%p= "Dates : #{@reservation.preferred_date_start} to #{@reservation.preferred_date_end}"
-%p= "Drinks : #{@reservation.prefer_drinks}"
-%p= "Dining Time : #{@reservation.preferred_reservation_time.strftime("%I:%M %p")}"
+.col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+  %h1 Reservation
+= render partial: 'reservation_partial', :locals => {:r => @reservation }
+

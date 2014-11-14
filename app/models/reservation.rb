@@ -24,5 +24,14 @@ class Reservation < ActiveRecord::Base
   def lat_long
     "#{latitude},#{longitude}"
   end
+
+  def find_matches
+    #find location (lat lon)
+    #time period (one day, two day overlap)
+    
+    #restaurants
+    #drinks
+    #time of reservation
+  end
 end
 
