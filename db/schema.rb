@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112235044) do
+ActiveRecord::Schema.define(version: 20141113235343) do
 
   create_table "reservations", force: true do |t|
     t.string   "fav_restaurant1"
     t.string   "fav_restaurant2"
     t.string   "fav_restaurant3"
     t.string   "cuisine"
-    t.string   "prefer_drinks"
-    t.time     "preferred_reservation_time"
-    t.date     "preferred_date_start"
+    t.boolean  "prefer_drinks",              limit: 255, default: true
+    t.time     "preferred_reservation_time",             default: '2000-01-01 19:00:00'
+    t.date     "preferred_date_start",                   default: '2014-11-13'
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "city"
     t.integer  "user_id"
-    t.date     "preferred_date_end"
+    t.date     "preferred_date_end",                     default: '2014-12-13'
     t.float    "latitude"
     t.float    "longitude"
   end
