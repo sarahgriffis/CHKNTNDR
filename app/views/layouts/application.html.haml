@@ -21,7 +21,9 @@
         .navbar-collapse.bs-navbar-collapse.collapse
           %ul.nav.navbar-nav.navbar.pull-right{:role => 'navigation'}
             - if current_user
-              %li Hello, #{current_user.full_name}!
+              %li Hello, #{current_user.full_name.humanize}!
+              %li
+                = link_to 'Create', new_reservation_path
               %li
                 = link_to 'Sign Out', destroy_user_session_path, method: :delete
             - else

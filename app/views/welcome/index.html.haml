@@ -11,6 +11,10 @@
       %br
       %p Expand your professional network dining at the <br> world's best establishments.
     - if current_user
+      .centered
+        %button.btn.btn-hg.btn-primary
+          %a= link_to 'Create', new_reservation_path
+
     - else
       .centered
         %button.btn.btn-hg.btn-primary
