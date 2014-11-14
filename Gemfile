@@ -48,7 +48,7 @@ gem 'rest-client'
 gem 'json'
 #gem 'uri'
 gem 'foursquare2', '~> 2.0.1'
-gem 'bootstrap-datepicker-rails'
+#gem 'bootstrap-datepicker-rails'
 gem 'haml'
 gem 'font-awesome-rails'
 

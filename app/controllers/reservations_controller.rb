@@ -50,6 +50,7 @@ class ReservationsController < ApplicationController
   end
 
   def match
+    @matches = Reservation.find(params[:id]).find_matches
 
   end
 

@@ -9,17 +9,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
   %body
-    .navbar.navbar-default.bs-docs-nav{:role => 'banner'}
+    .navbar.navbar-default{:role => 'navigation'}
       .container-fluid
         .navbar-header
           .navbar-brand= link_to 'CHKNTNDR', root_path
-          %button.navbar-toggle{:type => "button", 'data-toggle' => "collapse",  'data-target' => ".navbar-ex1-collapse"}
+          %button.navbar-toggle.dropdown-toggle.glyphicon.glyphicon-align-justify{'type' => "button", 'data-toggle' => "collapse",  'data-target' => "#navigationbar"}
             %span.sr-only Toggle only
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-        .navbar-collapse.bs-navbar-collapse.collapse
-          %ul.nav.navbar-nav.navbar.pull-right{:role => 'navigation'}
+            %span.icon-bar
+            %span.icon-bar
+
+
+        .collapse.navbar-collapse#navigationbar
+          %ul.nav.navbar-nav.pull-right
             - if current_user
               %li Hello, #{current_user.first_name.humanize}!
               %li
