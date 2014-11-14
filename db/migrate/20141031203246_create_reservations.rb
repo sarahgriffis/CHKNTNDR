@@ -5,7 +5,7 @@ class CreateReservations < ActiveRecord::Migration
       t.string :fav_restaurant2
       t.string :fav_restaurant3
       t.string :cuisine
-      t.string :prefer_drinks
+      t.boolean :prefer_drinks
       t.time :preferred_reservation_time
       t.date :perferred_date
 
