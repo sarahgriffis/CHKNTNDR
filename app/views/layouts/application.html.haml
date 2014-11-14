@@ -14,19 +14,17 @@
       .container-fluid
         .navbar-header
           .navbar-brand= link_to 'CHKNTNDR', root_path
-          %button.navbar-toggle.dropdown-toggle.glyphicon.glyphicon-align-justify.fui-linkedin{'type' => "button", 'data-toggle' => "collapse",  'data-target' => "#navigationbar"}
-            %span.sr-only Toggle only
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
 
-
-        .collapse.navbar-collapse#navigationbar
+          %button.navbar-toggle{'type' => 'button', 'data-toggle' => "collapse",  'data-target' => "#navbartarget"}
+            %span.glyphicon.glyphicon-align-justify
+            %span.sr-only Toggle Only
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        .collapse.navbar-collapse#navbartarget{:role => 'navigation'}
           %ul.nav.navbar-nav.pull-right
             - if current_user
-              %li Hello, #{current_user.first_name.humanize}!
+              %li.hellomessage Hello, #{current_user.first_name.humanize}!
               %li
                 = link_to 'Create', new_reservation_path
               %li
@@ -39,8 +37,6 @@
                 = link_to 'Sign Up', new_user_registration_path
               %li
                 = link_to 'Login', new_user_session_path
-            %li
-              %span.fui-list
             %li
               = link_to 'Contact', '#'
             %li

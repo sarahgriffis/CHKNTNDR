@@ -53,11 +53,15 @@
 
 .nav{
   li{
-    padding-top: 15px;
+    padding-top: 0px;
     a{
-      display: inline;
+      //display: inline;
     }
   }
+  .hellomessage{
+    padding-top: 12px;
+  }
+
 }
 
 .primary{
@@ -107,5 +111,9 @@ a:focus {
   color: #9db1b5;
   background-color: transparent;
   }
+
+.navbar-toggle:before{
+  content: none;
+}
 
 
