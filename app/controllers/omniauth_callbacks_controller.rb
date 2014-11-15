@@ -15,7 +15,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.linkedin_public_profile_url = auth_data[:info][:urls][:public_profile]
     end
 
-    sign_in @user
-    redirect_to new_reservation_path
+    if @user.persisted?
+      sign_in @user
+      redirect_to new_reservation_path
+    else
+      redirect_to new_user_registration_path
+    end
   end
 end

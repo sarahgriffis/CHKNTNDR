@@ -4,3 +4,5 @@
   %p= "Drinks : #{r.prefer_drinks}"
   %p= "Dining Time : #{r.preferred_reservation_time.strftime("%I:%M %p")}"
   = link_to 'Delete', r, method: :delete, data: {confirm: "Are you sure?"}
+  %br
+  = link_to 'Find Matches', find_matches_path(r)

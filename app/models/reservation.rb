@@ -14,6 +14,26 @@ class Reservation < ActiveRecord::Base
     Restaurant.from_foursquare(foursquare_data)
   end
 
+  def find_matches
+    #find location (lat lon)
+    #time period (one day, two day overlap)
+   @matches = Reservation.find_by_sql(["SELECT * FROM reservations WHERE latitude = ? AND longitude = ?
+                                       AND( (preferred_date_start , preferred_date_end) OVERLAPS
+                                             (?, ?))
+                                       AND user_id <> ?",
+                            self.latitude,
+                            self.longitude,
+                            self.preferred_date_start,
+                            self.preferred_date_end,
+                            self.user_id])
+
+
+    #restaurants
+    #drinks
+    #time of reservation
+  end
+
+
   private
 
   def set_location
@@ -25,13 +45,5 @@ class Reservation < ActiveRecord::Base
     "#{latitude},#{longitude}"
   end
 
-  def find_matches
-    #find location (lat lon)
-    #time period (one day, two day overlap)
-    
-    #restaurants
-    #drinks
-    #time of reservation
-  end
 end
 

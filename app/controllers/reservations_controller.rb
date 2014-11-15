@@ -49,7 +49,7 @@ class ReservationsController < ApplicationController
 
   end
 
-  def match
+  def find_matches
     @matches = Reservation.find(params[:id]).find_matches
 
   end
@@ -60,7 +60,7 @@ private
   def reservation_params
     params.require(:reservation).permit(:city, :fav_restaurant1, :fav_restaurant2, :fav_restaurant3,
                                        :cuisine, :prefer_drinks, :preferred_reservation_time,
-                                       :preferred_date, :user_id, {:restaurant_ids => []})
+                                       :preferred_date_start, :preferred_date_end, :user_id, {:restaurant_ids => []})
   end
 
 

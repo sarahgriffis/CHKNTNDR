@@ -1,0 +1,14 @@
+.col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+  %h1 Matches
+- if @matches.length > 0
+  - @matches.each do |match|
+    .col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+      %p= match.user.full_name
+      %p= "Industry : #{match.user.industry}."
+      %p= "Job Title : #{ match.user.job_title}."
+      = image_tag match.user.linkedin_picture_url
+      = link_to 'See LinkedIn profile',match.user.linkedin_public_profile_url
+
+- else
+  .col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+    %p Sorry, we don't have any matches you yet!
