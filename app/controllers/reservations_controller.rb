@@ -1,5 +1,7 @@
 class ReservationsController < ApplicationController
 
+    before_action :authenticate_user!
+
   def new
     if current_user
       @reservation = Reservation.new(user: current_user)
@@ -48,10 +50,16 @@ class ReservationsController < ApplicationController
     @reservations = current_user.reservations
   end
 
-  def destroy
+  def inactivate
     @reservation = Reservation.find(params[:id])
-    @reservation.destroy
-    redirect_to reservations_path
+    @reservation.inactived_at = Time.now
+    if @reservation.save
+      redirect_to reservations_path
+    else
+      flash[:notice] = "Could not inactivate."
+      redirect_to @reservation
+    end
+
 
   end
 

@@ -4,6 +4,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:linkedin]
+
+  #validates :id, presence: true
+  validates_confirmation_of :password
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :industry, presence: true
+  validates :job_title, presence: true
+  validates :home_city, presence: true
+
+
   has_many :reservations
 
   def full_name

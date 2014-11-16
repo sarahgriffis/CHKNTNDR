@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get 'reservations/find_restaurants' => 'reservations#find_restaurants', as: :find_restaurants
 
+  put 'reservations/:id/inactivate' => 'reservations#inactivate', as: :inactivate_reservation
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

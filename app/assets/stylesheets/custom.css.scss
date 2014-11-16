@@ -34,6 +34,7 @@
 
 .checkbox-custom-class{
   display: inline;
+  height: 600px;
   label{
     display: inline;
     .check_boxes{
@@ -120,4 +121,16 @@ h1{
  font-size: 36px;
 }
 
+.error{
+  color: red;
+}
+
+
+p.justify{
+    text-align: justify;
+}
+
+p.restauranttext{
+  font-size: 15px;
+}
 
