@@ -1,6 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def linkedin
     auth_data = request.env['omniauth.auth']
+    fake_password = Devise.friendly_token
 
     @user = User.find_or_create_by(email: auth_data[:info][:email]) do |user|
       user.first_name = auth_data[:info][:first_name]
@@ -12,6 +13,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.linkedin_picture_url = auth_data[:info][:image]
       user.linkedin_token = auth_data[:credentials][:token]
       user.linkedin_public_profile_url = auth_data[:info][:urls][:public_profile]
+
+      user.password = fake_password
+      user.password_confirmation = fake_password
     end
 
     sign_in @user
