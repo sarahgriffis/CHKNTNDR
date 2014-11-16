@@ -51,10 +51,11 @@ gem 'foursquare2', '~> 2.0.1'
 #gem 'bootstrap-datepicker-rails'
 gem 'haml'
 gem 'font-awesome-rails'
+gem 'pg'
+
 
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
   gem 'mandrill-api'
 end
@@ -63,5 +64,4 @@ group :development do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'pg'
 end

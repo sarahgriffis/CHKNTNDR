@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :reservations
 
+  resources :messages
+
   devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks}
   get 'contact/show', as: :contact
 

@@ -16,12 +16,33 @@ class User < ActiveRecord::Base
 
   has_many :reservations
 
+  has_many :received_messages,
+           :class_name => 'Message',
+           :foreign_key => 'receiver_id'
+        #   :conditions => ["messages.receiver_deleted = ?", false]
+  has_many :sent_messages,
+           :class_name => 'Message',
+           :foreign_key => 'sender_id'
+        #   :conditions => ["messages.receiver_deleted = ?", false]
+
+
+
   def full_name
     "#{first_name} #{last_name}"
   end
 
 
   after_create :welcome_message
+
+
+  def unread_messages?
+   unread_message_count > 0 ? true : false
+  end
+
+  # Returns the number of unread messages for this user
+   def unread_message_count
+     eval 'messages.count(:conditions => ["receiver_id = ? AND read_at IS NULL", self.sender_id])'
+   end
 
 
 private
