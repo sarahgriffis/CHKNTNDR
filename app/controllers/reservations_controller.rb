@@ -1,7 +1,13 @@
 class ReservationsController < ApplicationController
 
   def new
-    @reservation = Reservation.new
+    if current_user
+      @reservation = Reservation.new(user: current_user)
+    else
+      id = session['devise.user_attributes']['id']
+      sign_in User.find(id)
+      @reservation = Reservation.new(user: current_user)
+    end
   end
 
   def create

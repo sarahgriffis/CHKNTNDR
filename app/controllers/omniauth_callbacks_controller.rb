@@ -2,7 +2,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def linkedin
     auth_data = request.env['omniauth.auth']
 
-    #binding.pry
     @user = User.find_or_create_by(email: auth_data[:info][:email]) do |user|
       user.first_name = auth_data[:info][:first_name]
       user.last_name = auth_data[:info][:last_name]
@@ -15,11 +14,36 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user.linkedin_public_profile_url = auth_data[:info][:urls][:public_profile]
     end
 
-    if @user.persisted?
-      sign_in @user
-      redirect_to new_reservation_path
-    else
-      redirect_to new_user_registration_path
-    end
+    sign_in @user
+    #@user.reload
+    #@user.save
+    #sign_in @user
+
+    #@user.save
+
+    #redirect_to new_reservation_path
+    #sign_in_and_redirect(new_reservation_path, @user)
+    #
+     #if @user.persisted?
+     #       flash.notice = "Signed in!"
+     #       sign_in @user
+     #       sign_in_and_redirect(new_reservation_path, @user)
+
+     #else
+     #       @user.save
+     #       session["devise.user_attributes"] = @user.attributes
+     #       redirect_to new_reservation_path
+     #end
+    #
+  session["devise.user_attributes"] = @user.attributes
+  redirect_to new_reservation_path
+
+
+
+   # if current_user
+   #   redirect_to new_reservation_path
+   # else
+   #   redirect_to new_user_registration_path
+   # end
   end
 end
