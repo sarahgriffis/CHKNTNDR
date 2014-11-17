@@ -1,6 +1,5 @@
 .col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
   %h1 Matches
-  = link_to 'Messages', messages_path(current_user, :mailbox=>:inbox)
   %hr
 - if @matches.length > 0
   - @matches.each do |match|

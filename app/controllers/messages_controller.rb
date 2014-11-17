@@ -2,15 +2,21 @@ class MessagesController < ApplicationController
 
   before_filter :set_user
   before_action :authenticate_user!
+
   def new
     @message = Message.new
-    @message.receiver_id = params[:receiver_id]
-    @message.reservation_id = params[:reservation_id]
+    @message.receiver_id = params[:receiver_id] if  params[:receiver_id]
+    @message.reservation_id = params[:reservation_id] if  params[:reservation_id]
 
     if params[:reply_to]
-      @reply_to = User.find_by_user_id(params[:reply_to])
+      @reply_to_message = Message.find(params[:reply_to])
+      @reply_to = User.find(@reply_to_message.sender_id)
+
       unless @reply_to.nil?
-        @message.receiver_id = @reply_to.user_id
+        @message.receiver_id = @reply_to.id
+        @message.reservation_id = @reply_to_message.reservation_id
+        @message.subject = "Re: #{@reply_to_message.subject}"
+        @message.body = "\n\n*Original message*\n #{@reply_to_message.body}"
       end
     end
   end
