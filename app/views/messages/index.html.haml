@@ -1,20 +1,21 @@
 .col-sm-12.col-md-6.col-md-offset-3
   %h1 Messages
-  - if params[:mailbox] = 'inbox'
+  - if params[:mailbox] == 'inbox'
     %strong= link_to 'Sent Messages', messages_path(:mailbox=>:sent)
-  - if params[:mailbox] = 'sent'
+  - if params[:mailbox] == 'sent'
     %strong= link_to 'Received Messages', messages_path(:mailbox=>:inbox)
   %br
   %hr
 
+  #accordion
   - @messages.group_by {|m| m['reservation_id']}.each do |reservation, message|
-    #accordion
-      %h4= "Regarding your dining experience in #{Reservation.find(reservation).city}."
-      - message.each do |m|
-        %p.subject= "Subject: #{m.subject}"
-        %strong= "From: #{User.find(m.sender_id).full_name}."
-        %br
-        %p.messagebody= m.body.gsub(/\n/, '<br />').html_safe
+    %h3= "Regarding your dining experience in #{Reservation.find(reservation).city}."
+    - message.each do |m|
+      %p.subject= "Subject: #{m.subject}"
+      %strong= "From: #{User.find(m.sender_id).full_name}."
+      %br
+      %p.messagebody= m.body.gsub(/\n/, '<br />').html_safe
+      %button.btn.btn-small
         = link_to 'Reply', new_message_path(reply_to: m.id)
-        %hr
+      %hr
 
