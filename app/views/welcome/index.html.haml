@@ -12,13 +12,11 @@
       %p Expand your professional network dining at the <br> world's best establishments.
     - if current_user
       .centered
-        %button.btn.btn-hg.btn-primary
-          %a= link_to 'Create', new_reservation_path
+        = button_to 'Create', new_reservation_path, class: 'btn btn-hg btn-primary', method: :get
 
     - else
       .centered
-        %button.btn.btn-hg.btn-primary
-          %a= link_to 'Sign up', new_user_registration_path
+        = button_to 'Sign up', new_user_registration_path, class: 'btn btn-hg btn-primary', method: :get
 
 .learn-more
   .container
