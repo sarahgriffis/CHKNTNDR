@@ -1,4 +1,4 @@
-.col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+.col-sm-4.col-sm-offset-4
   %h1 All Reservations
   %strong= link_to 'Messages', messages_path(:mailbox=>:inbox)
   %hr
@@ -7,7 +7,7 @@
   - if reservation.inactived_at.nil?
     = render partial: 'reservation_partial', :locals => {:r => reservation }
     %br
-    .col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+    .col-sm-4.col-sm-offset-4
       %hr
 
 //= render partial: @reservations

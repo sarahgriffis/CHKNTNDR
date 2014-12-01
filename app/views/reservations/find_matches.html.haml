@@ -1,15 +1,15 @@
-.col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+.col-sm-4.col-sm-offset-4
   %h1 Matches
   %hr
 - if @matches.length > 0
   - @matches.each do |match|
-    .col-md-6.col-md-offset-3.col-sm-6.col-sm-offset-3
+    .col-sm-4.col-sm-offset-4
       %p= match.user.full_name
       %p= "Industry : #{match.user.industry}."
       %p= "Job Title : #{ match.user.job_title}."
       = image_tag match.user.linkedin_picture_url
       %br
-      = link_to 'See LinkedIn profile',match.user.linkedin_public_profile_url
+      = link_to 'See LinkedIn profile',match.user.linkedin_public_profile_url, :target => "_blank" if match.user.linkedin_public_profile_url.present?
       %br
       = link_to "Message #{match.user.first_name}", new_message_path({reservation_id: params[:id], receiver_id: match.user.id})
 
