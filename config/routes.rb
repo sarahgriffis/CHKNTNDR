@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'about/show'
+
   get 'reservations/:id/find_matches' => 'reservations#find_matches', as: :find_matches
   #get 'rock_paper_scissors/(:guess)' => 'rock_paper_scissors#index', as: :rock_paper_scissors
 
@@ -13,6 +15,8 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks}
   get 'contact/show', as: :contact
+  get 'about/show', as: :about
+
 
   get 'login/show', as: :login
 
