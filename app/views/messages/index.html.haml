@@ -7,15 +7,21 @@
   %br
   %hr
 
-  #accordion
-  - @messages.group_by {|m| m['reservation_id']}.each do |reservation, message|
-    %h3= "Regarding your dining experience in #{Reservation.find(reservation).city}."
-    - message.each do |m|
-      %p.subject= "Subject: #{m.subject}"
-      %strong= "From: #{User.find(m.sender_id).full_name}."
-      %br
-      %p.messagebody= m.body.gsub(/\n/, '<br />').html_safe
-      %button.btn.btn-small
-        = link_to 'Reply', new_message_path(reply_to: m.id)
-      %hr
+  .panel-group{:id => "accordian", "role" => "tablist"}
+    - @messages.group_by {|m| m['reservation_id']}.each do |reservation, message|
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a.accordion-toggle{"data-toggle" => "collapse", "data-parent" => "#accordion", :href => "#collapse-#{reservation}", "aria-expanded" => "false"}
+              Regarding your dining experience in #{Reservation.find(reservation).city}.
+        .panel-collapse.collapse{:id => "collapse-#{reservation}"}
+          .panel-body
+            - message.each do |m|
+              %p.subject= "Subject: #{m.subject}"
+              %strong= "From: #{User.find(m.sender_id).full_name}."
+              %br
+              %p.messagebody= m.body.gsub(/\n/, '<br />').html_safe
+              %button.btn.btn-small
+                = link_to 'Reply', new_message_path(reply_to: m.id)
+              %hr
 
